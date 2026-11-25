@@ -1,0 +1,260 @@
+.records-content {
+  padding: 26px 24px 38px;
+}
+
+.records-content h1 {
+  margin: 28px 0 0;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.records-back,
+.record-source,
+.record-similarity,
+.records-content h2 {
+  color: #666;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.records-back,
+.record-source a {
+  color: #666;
+  text-decoration: none;
+}
+
+.records-back:hover,
+.record-source a:hover,
+.records-list a:hover {
+  text-decoration: underline;
+}
+
+.record-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 9px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.record-tags li {
+  padding: 6px 15px;
+  border-radius: 999px;
+  background: #ededed;
+  color: #444;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.record-answer {
+  margin-top: 30px;
+  color: #222;
+  font-size: 15px;
+  line-height: 28px;
+}
+
+.record-answer p {
+  margin: 0;
+}
+
+.record-source {
+  margin: 20px 0 22px;
+  overflow-wrap: anywhere;
+}
+
+.record-feedback,
+.record-related {
+  padding-top: 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.records-content h2 {
+  margin: 0 0 11px;
+  font-weight: 400;
+}
+
+.record-feedback-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.record-feedback-options button,
+.record-delete {
+  min-width: 96px;
+  min-height: 45px;
+  padding: 0 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.record-feedback-options button[aria-pressed="true"] {
+  border-color: #e8590c;
+  box-shadow: inset 0 0 0 1px #e8590c;
+  color: #c44500;
+  font-weight: 700;
+}
+
+.record-related {
+  margin-top: 34px;
+}
+
+.record-related ul {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e5e5e5;
+  list-style: none;
+}
+
+.record-related li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+  color: #111;
+  font-size: 14px;
+}
+
+.record-similarity {
+  flex-shrink: 0;
+}
+
+.record-delete {
+  min-width: 128px;
+  margin-top: 23px;
+}
+
+.records-list {
+  padding-top: 13px;
+}
+
+.records-search {
+  width: 100%;
+  height: 54px;
+  padding: 0 18px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 15px;
+}
+
+.records-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 22px 0 24px;
+}
+
+.records-filters button,
+.records-row-actions button {
+  border: 0;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+}
+
+.records-filters button {
+  padding: 2px 0 5px;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+}
+
+.records-filters button:first-child {
+  margin-right: 20px;
+}
+
+.records-filters button[aria-pressed="true"] {
+  border-color: #e8590c;
+}
+
+.records-filters button[aria-pressed="true"],
+.records-row-actions button[aria-pressed="true"] {
+  color: #c44500;
+  font-weight: 700;
+}
+
+.records-rows {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e5e5e5;
+  list-style: none;
+}
+
+.records-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  min-height: 92px;
+  padding: 16px 22px 16px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.records-row a {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+  color: #111;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.records-row small {
+  color: #666;
+  font-size: 13px;
+}
+
+.records-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.records-row-actions button {
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.records-row-actions button:first-child {
+  color: #111;
+}
+
+.records-row-actions button[aria-pressed="true"]:first-child {
+  color: #c44500;
+}
+
+.records-row-actions button:hover {
+  text-decoration: underline;
+}
+
+.record-answer + .record-feedback {
+  margin-top: 22px;
+}
+
+@media (max-width: 560px) {
+  .records-row {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  .records-filters {
+    column-gap: 16px;
+  }
+
+  .records-filters button:first-child {
+    margin-right: 0;
+  }
+}
+

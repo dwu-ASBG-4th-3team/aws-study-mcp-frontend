@@ -1,0 +1,181 @@
+.ask-content {
+  padding: 39px 24px 64px;
+}
+
+.ask-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 121px;
+  padding: 17px 18px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 15px;
+  line-height: 22px;
+  resize: vertical;
+}
+
+.ask-form textarea::placeholder {
+  color: #777;
+}
+
+.ask-form .dashboard-review {
+  margin-top: 19px;
+}
+
+.ask-form .dashboard-review:disabled {
+  cursor: wait;
+}
+
+.ask-message {
+  margin: 8px 0 0;
+}
+
+.ask-message:empty {
+  margin: 0;
+}
+
+.ask-form:has(button:disabled) .ask-message {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.ask-answer {
+  margin-top: 31px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.ask-answer h1,
+.ask-references h2 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.ask-answer-placeholder {
+  display: grid;
+  gap: 16px;
+  margin-top: 33px;
+}
+
+.ask-answer-placeholder span {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ededed 0%, #ededed 35%, #fafafa 50%, #ededed 65%, #ededed 100%);
+  background-size: 250% 100%;
+  animation: ask-skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+.ask-answer-placeholder span:last-child {
+  width: 67%;
+}
+
+@keyframes ask-skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-answer-placeholder span {
+    animation: none;
+    background: #ededed;
+  }
+}
+
+.ask-answer-text {
+  margin-top: 13px;
+  color: #222;
+  font-size: 15px;
+  line-height: 28px;
+}
+
+.ask-answer-text p {
+  margin: 0;
+}
+
+.ask-references {
+  margin-top: 24px;
+}
+
+.ask-references ul {
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid #e5e5e5;
+  list-style: none;
+}
+
+.ask-references li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 16px;
+  min-height: 52px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+
+.ask-references a {
+  color: #111;
+  text-decoration: none;
+}
+
+.ask-references a:hover {
+  text-decoration: underline;
+}
+
+.ask-references li span {
+  color: #666;
+  font-size: 13px;
+}
+
+.ask-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 22px;
+}
+
+.ask-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ask-feedback button {
+  min-width: 96px;
+  min-height: 45px;
+  padding: 0 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ask-feedback button[aria-pressed="true"] {
+  border-color: #e8590c;
+  box-shadow: inset 0 0 0 1px #e8590c;
+  color: #c44500;
+  font-weight: 700;
+}
+
+.ask-footer p {
+  margin: 0;
+  color: #777;
+  font-size: 12px;
+}
