@@ -153,7 +153,24 @@ Vite가 터미널에 출력한 주소를 브라우저에서 엽니다. API를 �
 npm run build
 ```
 
-배포 환경에서는 CloudFront가 S3의 정적 웹 파일을 제공하고, `/api` 요청을 백엔드로 전달하도록 구성할 계획입니다.
+### CloudFront 배포
+
+기존 CloudFront 배포의 기본 동작은 S3 정적 파일을 제공하고, `/mcp`와 `/api/*`는 각각 VPC Origin으로 전달하도록 설정합니다.
+
+1. CloudFront에서 `clfqa-dev-alb`를 VPC Origin으로 생성합니다. 리전은 서울(`ap-northeast-2`), ALB ARN은 `arn:aws:elasticloadbalancing:ap-northeast-2:202111353453:loadbalancer/app/clfqa-dev-alb/6fa1ea8fe10baf06`입니다. 오리진 연결은 `HTTP only`, 포트는 `80`을 사용합니다.
+2. 기존 배포에 VPC Origin을 추가한 뒤 두 경로에 아래 설정을 적용합니다. 오리진 경로(Origin path)는 비워 둡니다.
+
+| 항목 | 값 |
+| --- | --- |
+| 경로 패턴 | `/mcp`, `/api/*` |
+| 허용 메서드 | GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE |
+| 캐시 정책 | `CachingDisabled` |
+| 오리진 요청 정책 | `AllViewerExceptHostHeader` |
+
+3. VPC Origin 생성 후 서울 리전의 ALB VPC에서 `CloudFront-VPCOrigins-Service-SG`의 `sg-…` ID를 확인해 ALB 담당자에게 전달합니다. ALB 인바운드 변경은 담당자가 진행합니다.
+4. ECS가 준비되면 CloudFront 주소의 `/api/health`로 연결을 확인합니다. 그전에는 백엔드 경로에서 `503`이 나올 수 있습니다.
+
+설정 화면의 MCP 주소는 기본적으로 현재 사이트 주소에 `/mcp`를 붙여 표시합니다. 별도 MCP 주소가 필요한 로컬 환경에서는 `VITE_MCP_URL`을 지정할 수 있습니다.
 
 ## 👥 담당
 

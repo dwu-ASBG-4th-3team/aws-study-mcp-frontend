@@ -5,7 +5,7 @@ import { createRecordsImage } from "./createRecordsImage";
 import "./SettingsPage.css";
 
 const configuredMcpUrl = import.meta.env.VITE_MCP_URL?.trim();
-const mcpUrl = configuredMcpUrl || "https://clf-note.example.com/mcp";
+const mcpUrl = configuredMcpUrl || new URL("/mcp", window.location.origin).href;
 
 export default function SettingsPage({ onSignOut }: { onSignOut: () => void }) {
   const [copyMessage, setCopyMessage] = useState("");
