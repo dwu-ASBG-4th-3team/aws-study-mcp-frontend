@@ -5,6 +5,7 @@ import "./AskPage.css";
 
 const feedbackOptions = ["이해함", "헷갈림", "오류 의심"] as const;
 const storageKey = "clf-note:ask-sessions";
+const maxQuestionLength = 2_000;
 
 type Turn = {
   question: string;
@@ -41,6 +42,9 @@ export default function AskPage() {
   const session = sessions.find((item) => item.id === activeId)!;
   const activePending = pending?.sessionId === activeId ? pending : null;
   const empty = !session.turns.length && !activePending;
+  const question = draft.trim();
+  const questionTooLong = question.length > maxQuestionLength;
+  const canSubmit = !pending && question.length > 0 && !questionTooLong;
 
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(sessions));
@@ -78,8 +82,8 @@ export default function AskPage() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (pending || !draft.trim()) return;
-    setPending({ sessionId: activeId, question: draft.trim() });
+    if (!canSubmit) return;
+    setPending({ sessionId: activeId, question });
     setDraft("");
   }
 
@@ -202,6 +206,8 @@ export default function AskPage() {
           <form className="ask-form" data-loading={Boolean(pending)} onSubmit={handleSubmit}>
             <textarea
               aria-label="AWS CLF 질문"
+              aria-invalid={questionTooLong || undefined}
+              aria-describedby={questionTooLong ? "ask-question-error" : undefined}
               rows={1}
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
@@ -214,9 +220,14 @@ export default function AskPage() {
                 setPending(null);
               }}>중지</button>
             ) : (
-              <button className="ask-primary" type="submit" disabled={Boolean(pending) || !draft.trim()}>전송</button>
+              <button className="ask-primary" type="submit" disabled={!canSubmit}>전송</button>
             )}
           </form>
+          {questionTooLong && (
+            <p className="ask-question-error" id="ask-question-error" role="alert">
+              질문은 최대 {maxQuestionLength.toLocaleString("ko-KR")}자까지 입력할 수 있어요.
+            </p>
+          )}
           <p className="ask-save-note">질문과 답변은 이 세션에 자동으로 저장돼요</p>
         </section>
       </main>
